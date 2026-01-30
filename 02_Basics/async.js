@@ -68,3 +68,28 @@
     
 // }
 // getCominedProductData()
+
+async function getUniversityandCountryInof() {
+    try {
+        const uniRes = await fetch("http://universities.hipolabs.com/search?country=United+States&limit=3");
+        const universities = await uniRes.json()
+
+        universities.forEach((uni)=> console.log(uni.name));
+        
+
+        const countryRes = await fetch("https://restcountries.com/v3.1/name/united%20states");
+        const countryData = await countryRes.json();
+
+        const country = countryData[0];
+
+        console.log(`${country.name.common}`);
+        
+
+    }catch(error) {
+        console.log('Error',error);
+        
+    }
+    
+}
+
+getUniversityandCountryInof()
